@@ -1,0 +1,25 @@
+services:
+  ros_melodic_tmp3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ros_melodic_tmp3
+    container_name: ros_melodic_tmp3
+    runtime: nvidia  # Use NVIDIA runtime for GPU support
+    ports:
+      - "822:22"
+    volumes:
+      - ${PWD}/..:/home/ros/development  # Mount the parent directory to /home/ros/shared
+      - /tmp/.X11-unix:/tmp/.X11-unix  # For GUI applications like RViz
+      - ${PWD}/../.ssh:/home/ros/.ssh  # Mount SSH keys for remote access
+    environment:
+      - DISPLAY=$DISPLAY  # For GUI applications like RViz
+      - QT_X11_NO_MITSHM=1  # For resolving some GUI issues
+      - ROS_DOMAIN_ID=0  # ROS domain ID for communication
+    devices:
+      - /dev/ptmx:/dev/ptmx
+    # network_mode: host  # Use host network for easy ROS communication
+    tty: true  # Keep the container running with a pseudo-TTY
+    privileged: true  # Needed for some hardware access
+    working_dir: /home/ros/development  # Set the default working directory
+    command: sudo /usr/sbin/sshd -D  # Default command to run
