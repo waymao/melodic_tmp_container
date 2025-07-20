@@ -48,6 +48,7 @@ elif [ ${UBUNTU_VER} = '18.04' ]; then
 fi
 # Install Python & other Linux packages
 echo "INFO: Installing python and linux dependencies..........."
+sudo apt-get install python-pip wget locate python-tk -y
 sudo apt-get install liblapacke-dev libnewmat10*  libgsl-dev -y
 sudo python2.7 -m pip install pydot==1.2.3
 sudo python2.7 -m pip install matplotlib==2.2.0 --user
