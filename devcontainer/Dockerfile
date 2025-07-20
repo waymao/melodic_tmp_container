@@ -11,7 +11,7 @@ COPY install_tmp_dependencies.sh /home/ros/install/
 COPY install_crosstool_glibc.sh /home/ros/install/
 
 ENV HOME=/home/ros
-RUN apt-get update && apt-get install python3-catkin-tools -y
+RUN apt-get update && apt-get install python-catkin-tools vim wget python-pip python-tk -y
 
 # tmp dependencies
 RUN cd /home/ros && chmod +x install/install_tmp_dependencies.sh && ./install/install_tmp_dependencies.sh

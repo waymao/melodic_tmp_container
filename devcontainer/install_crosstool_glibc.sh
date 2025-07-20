@@ -25,3 +25,6 @@ unset LD_LIBRARY_PATH
 ct-ng build
 
 chown -R ros:ros $HOME
+export VSCODE_SERVER_CUSTOM_GLIBC_LINKER=$HOME/alt_toolchain/x86_64-linux-gnu/x86_64-linux-gnu/sysroot/lib/ld-linux-x86-64.so.2
+export VSCODE_SERVER_CUSTOM_GLIBC_PATH=$HOME/alt_toolchain/x86_64-linux-gnu/x86_64-linux-gnu/sysroot/lib/
+export VSCODE_SERVER_PATCHELF_PATH=$HOME/git/bin/patchelf
