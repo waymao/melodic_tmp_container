@@ -18,11 +18,14 @@ RUN cd /home/ros && chmod +x install/install_tmp_dependencies.sh && ./install/in
 # ssh server for vscode
 RUN sudo apt-get install openssh-server -y && sudo apt-get clean && sudo mkdir -p /run/sshd
 
-# create glibc symlink for sshs
-COPY install_crosstool_glibc.sh /home/ros/install/
-RUN cd /home/ros && chmod +x install/install_crosstool_glibc.sh && ./install/install_crosstool_glibc.sh
+RUN sudo chown -R ros:ros /home/ros/
 
-RUN chown -R ros:ros /home/ros/ && echo "ros:bigbubba" | chpasswd
+# create glibc symlink for sshs
 USER ros
+COPY install_crosstool_glibc.sh /home/ros/install/
+COPY configs/ct-ng.config /home/ros/install/
+RUN cd /home/ros && sudo chmod +x install/install_crosstool_glibc.sh && ./install/install_crosstool_glibc.sh
+
+RUN echo "ros:bigbubba" | sudo chpasswd
 
 SHELL [ "/bin/bash" ]

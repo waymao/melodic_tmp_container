@@ -15,9 +15,15 @@ To connect to the host, run
 ssh ros@localhost -p 822
 ```
 
+The password is the usual lab password, and can also be found hidden somewhere in the pile
+in this repository.
+
+### VS Code Setup
 You may also connect do remote edit through vscode by connecting to this host. 
 You may not use devcontainer in vscode, as vscode-server uses the patched glibc version
 only through ssh, not through devcontainer.
+
+For easy vscode access, do `ssh-copy-id ros@localhost -p 822`.
 
 ### First-time setup
 During the first time, run
