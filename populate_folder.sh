@@ -22,6 +22,9 @@ catkin config --extend ~/tmp_catkin_ws/devel
 cd src
 git clone git@github.com:waymao/barrett_hand.git
 git clone git@github.com:h2r/humanoid_brown.git
+cd humanoid_brown
+git checkout dorfl
+git submodule update --init --recursive
 
 cd ..
 catkin build
