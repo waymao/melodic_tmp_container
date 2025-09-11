@@ -18,6 +18,13 @@ services:
       - ROS_DOMAIN_ID=0  # ROS domain ID for communication
     devices:
       - /dev/ptmx:/dev/ptmx
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     # network_mode: host  # Use host network for easy ROS communication
     tty: true  # Keep the container running with a pseudo-TTY
     privileged: true  # Needed for some hardware access
